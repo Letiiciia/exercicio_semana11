@@ -1,6 +1,7 @@
 const express = require("express");
 const { selectAllData, selectDataById, deleteData } = require("../models/maravilhosas-models");
 const models = require("../models/maravilhosas-models");
+const maravilhosas = require("../data/data.json");
 
 //Nomes dos métodos para implementação:
 //getMaravilhosas
@@ -25,11 +26,43 @@ function getMaravilhosaById (request, response){
 
 
 //addMaravilhosa 
-function addMaravailhosa(request, response){
+// function addMaravailhosa(request, response){
     
-   response.status(200).send(insertData());
+//    response.status(200).send(insertData());
 
 
+// }
+function insertData(request, response) {
+
+    const arrayId = maravilhosas.map(maravilhosa => maravilhosa.id == maravilhosa.id);
+    console.log(arrayId);
+   
+    // const novoId = () => {
+    //     if (tarefaMaravilhosaId.length > 0) {
+    //         return tarefaMaravilhosaId[tarefaMaravilhosaId.length - 1].id + 1
+    //     } else {
+    //         return 1
+    //     }
+    //   }
+    
+    const novoId = arrayId.length > 0 ? Math.max.apply(Math, arrayId) + 1 : 1;
+
+    
+    const novaMaravilhosa = {
+        id: novoId,
+        name: request.body.name,
+        photo: request.body.photo,
+        subtitle: request.body.subtitle,
+        about: request.body.about,
+        phrase: request.body.phrase,
+        history: [request.body.history],
+        addedBy: request.body.addedBy
+    }
+
+    maravilhosas.push(novaMaravilhosa);
+    
+
+    response.status(200).send(novaMaravilhosa);
 }
 
 
@@ -58,6 +91,7 @@ module.exports = {
     getMaravilhosaById,
     updateMaravilhosa,
     deleteMaravilhosa,
-    addMaravailhosa
+    //addMaravailhosa
+    insertData
     
 }

@@ -24,29 +24,31 @@ function selectDataById(id) {
 }
 
 //insertData
-function insertData() {
+// function insertData(request, response) {
+
+//     const tarefaMaravilhosaId = maravilhosas.map(maravilhosa => maravilhosa.id == maravilhosa.id);
+//     const novoId = tarefaMaravilhosaId.length > 0 ? Math.max.apply(Math, tarefaMaravilhosaId) + 1 : 1;
+
+//     const { name, photo, subtitle, about, phrase, history, addedBy } = request.body;
+//     const novaMaravilhosa = {
+//         id: novoId,
+//         name: name,
+//         photo: photo,
+//         subtitle: subtitle,
+//         about: about,
+//         phrase: phrase,
+//         history: [history],
+//         addedBy: addedBy
+//     }
+
+//     maravilhosas.push(novaMaravilhosa);
     
-    //const tarefaMaravilhosaId = maravilhosas.map(maravilhosa => maravilhosa.id == maravilhosa.id);
-    //const novoId = tarefaMaravilhosaId.length > 0 ? Math.max.apply(Math, tarefaMaravilhosaId) + 1 : 1;
-    const addMaravilhosa = (request, response) => {
-        const {name, photo, subtitle, about, phrase, history, addedBy} = request.body;
-        const novaMaravilhosa = {
-            id: helper.geraId(novoId),
-            name: name,
-            photo: photo,
-            subtitle: subtitle,
-            about: about,
-            phrase: phrase,
-            history: [history],
-            addedBy: addedBy
-        }
 
-        maravilhosas.push(novaMaravilhosa);
-        return maravilhosas;
-    }}
+//     response.status(200).send(maravilhosas);
+// }
 
 
-    
+
 
 
 
@@ -83,6 +85,6 @@ module.exports = {
     selectDataById,
     upDate,
     deleteData,
-    insertData
-    
+    //insertData
+
 }

@@ -10,7 +10,7 @@ router.get("/maravilhosas",cors(), controller.getMaravilhosas);
 router.get("/maravilhosas/:id", cors(), controller.getMaravilhosaById);
 
 //get /maravilhosas/id
-router.post("/maravilhosas", cors(), controller.addMaravailhosa);
+router.post("/maravilhosas", cors(), controller.insertData);
 
 //put /maravilhosas/id
 router.put("/maravilhosas/:id", cors(), controller.updateMaravilhosa);
