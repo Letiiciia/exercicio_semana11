@@ -24,32 +24,41 @@ function selectDataById(id) {
 }
 
 //insertData
-// function insertData(request, response) {
+function insertData(informacao) {
 
-//     const tarefaMaravilhosaId = maravilhosas.map(maravilhosa => maravilhosa.id == maravilhosa.id);
-//     const novoId = tarefaMaravilhosaId.length > 0 ? Math.max.apply(Math, tarefaMaravilhosaId) + 1 : 1;
+    const novoId = (maravilhosas.length > 0) ? maravilhosas[maravilhosas.length - 1].id + 1 : 1;
 
-//     const { name, photo, subtitle, about, phrase, history, addedBy } = request.body;
-//     const novaMaravilhosa = {
-//         id: novoId,
-//         name: name,
-//         photo: photo,
-//         subtitle: subtitle,
-//         about: about,
-//         phrase: phrase,
-//         history: [history],
-//         addedBy: addedBy
-//     }
+    const verificaNome = maravilhosas.map(maravilhosa => maravilhosa.name);
+    console.log(verificaNome);
 
-//     maravilhosas.push(novaMaravilhosa);
-    
+    const { name, photo, subtitle, about, phrase, history, addedBy } = informacao;
 
-//     response.status(200).send(maravilhosas);
-// }
+  
 
+    if (!informacao) {
+        console.log("Oi");
+        return "Informações incompletas";
+        
+    } else if (verificaNome.find(name => name == informacao.name)) {
+        console.log("tchau");
+        return "Maravilhosa existente na base de dados!";
+    } else {
+        const novaMaravilhosa = {
+            id: novoId,
+            name: name,
+            photo: photo,
+            subtitle: subtitle,
+            about: about,
+            phrase: phrase,
+            history: [history],
+            addedBy: addedBy
+        }
 
+        maravilhosas.push(novaMaravilhosa);
 
-
+        return novaMaravilhosa;
+    }
+}
 
 
 
@@ -59,9 +68,10 @@ function upDate(id, atualizaMaravilhosa) {
     const localizarMaravilhosa = atualMaravilhosa.indexOf(id);
 
     const locMaravilhosa = { id, ...atualizaMaravilhosa };
-    const atualizacaoFinal = maravilhosas.splice(localizarMaravilhosa, 1, locMaravilhosa);
+    maravilhosas.splice(localizarMaravilhosa, 1, locMaravilhosa);
+    const novaMaravilhosa = maravilhosas.find(maravilhosa => maravilhosa.id == id);
 
-    return atualizacaoFinal;
+    return novaMaravilhosa;
 
 }
 
@@ -85,6 +95,6 @@ module.exports = {
     selectDataById,
     upDate,
     deleteData,
-    //insertData
+    insertData
 
 }

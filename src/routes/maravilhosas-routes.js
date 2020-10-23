@@ -6,11 +6,11 @@ const cors = require("cors");
 //get /maravilhosas
 router.get("/maravilhosas",cors(), controller.getMaravilhosas);
 
-//post /maravilhosas
+//get /maravilhosas/id
 router.get("/maravilhosas/:id", cors(), controller.getMaravilhosaById);
 
-//get /maravilhosas/id
-router.post("/maravilhosas", cors(), controller.insertData);
+//post /maravilhosas
+router.post("/maravilhosas/", cors(), controller.addMaravailhosa);
 
 //put /maravilhosas/id
 router.put("/maravilhosas/:id", cors(), controller.updateMaravilhosa);
